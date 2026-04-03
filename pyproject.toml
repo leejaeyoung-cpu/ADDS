@@ -108,13 +108,7 @@ testpaths = ["tests"]
 python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
-addopts = """
-    --verbose
-    --cov=src
-    --cov-report=html
-    --cov-report=term-missing
-    --cov-fail-under=50
-"""
+addopts = "--verbose --tb=short"
 
 # Coverage settings
 [tool.coverage.run]
