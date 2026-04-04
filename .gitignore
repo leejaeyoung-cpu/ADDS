@@ -136,3 +136,17 @@ push_to_github.py
 !README.md
 !CONTRIBUTING.md
 !docs/*.md
+
+# ── 추가 제외 (로컬 전용) ──────────────────────────────────────────
+htmlcov/
+benchmark_results/
+evaluation_results/
+output/
+outputs/
+results/
+runs/
+SegVol/
+segvol_ckpt/
+upload_*.py
+fix_*.py
+cleanup_*.py

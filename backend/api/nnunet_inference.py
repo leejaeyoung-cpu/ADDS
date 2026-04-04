@@ -53,7 +53,7 @@ def _get_model_path(dataset: str = DEFAULT_DATASET) -> Path:
     candidates = [
         NNUNET_BASE / dataset / DEFAULT_CONFIG,
         Path(BASE_DIR / "nnUNet_results") / dataset / DEFAULT_CONFIG,
-        Path("C:/nnUNet_data/nnUNet_results") / dataset / DEFAULT_CONFIG,
+        BASE_DIR / "nnUNet_results" / dataset / DEFAULT_CONFIG,
     ]
     for p in candidates:
         if p.exists():

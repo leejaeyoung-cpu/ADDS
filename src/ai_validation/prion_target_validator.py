@@ -8,6 +8,10 @@ using knowledge base evidence and GPT-4 reasoning.
 import os
 import json
 from pathlib import Path
+import os as _os
+from pathlib import Path as _Path
+BASE_DIR = _Path(_os.environ.get('ADDS_BASE_DIR', str(_Path(__file__).resolve().parents[3])))
+
 from typing import Dict, List, Optional, Tuple
 from datetime import datetime
 import openai
@@ -39,7 +43,7 @@ class PrionTargetValidator:
         }
     }
     
-    def __init__(self, data_dir: str = "C:/Users/brook/Desktop/ADDS/data"):
+    def __init__(self, data_dir: str = str(BASE_DIR / "data")):
         self.data_dir = Path(data_dir)
         self.output_dir = self.data_dir / "analysis"
         self.output_dir.mkdir(parents=True, exist_ok=True)

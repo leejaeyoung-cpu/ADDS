@@ -9,6 +9,10 @@ import pandas as pd
 import json
 import numpy as np
 from pathlib import Path
+import os as _os
+from pathlib import Path as _Path
+BASE_DIR = _Path(_os.environ.get('ADDS_BASE_DIR', str(_Path(__file__).resolve().parents[2])))
+
 from typing import Dict, List, Tuple, Optional
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -17,9 +21,9 @@ from scipy import stats
 class PrionKRASAnalyzer:
     """Analyze PrPc expression and KRAS mutation correlation"""
     
-    def __init__(self, data_dir: str = "C:/Users/brook/Desktop/ADDS/data"):
+    def __init__(self, data_dir: str = str(BASE_DIR / "data")):
         self.data_dir = Path(data_dir)
-        self.prpc_file = Path("C:/Users/brook/Desktop/ADDS/PrPc, PRNP 암항원 발현 암종별 비율표.xlsx")
+        self.prpc_file = BASE_DIR / "data" / "PrPc, PRNP 암항원 발현 암종별 비율표.xlsx"
         self.kb_file = self.data_dir / "knowledge_base" / "cancer_knowledge_base.json"
         
         self.prpc_data = None
@@ -345,7 +349,7 @@ def main():
     # Step 4: Generate visualizations
     print("\nSTEP 4: Generating Visualizations")
     print("-" * 70)
-    output_path = "C:/Users/brook/Desktop/ADDS/data/analysis/prpc_kras_correlation.png"
+    output_path = str(BASE_DIR / "data" / "analysis" / "prpc_kras_correlation.png")
     analyzer.generate_expression_heatmap(output_path)
     
     # Step 5: Export results

@@ -205,7 +205,7 @@ def extract_tumor_statistics(segmentation_mask):
 # 간단한 테스트 함수
 if __name__ == "__main__":
     import sys
-    sys.path.insert(0, 'C:/Users/brook/Desktop/ADDS/src')
+    # sys.path managed by PYTHONPATH environment variable
     
     from medical_imaging.ct_analyzer import CTAnalyzer
 

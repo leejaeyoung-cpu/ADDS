@@ -92,7 +92,7 @@ def show_basic_analysis_tab():
         st.info("이미지 시퀀스는 서버의 디렉토리 경로를 직접 입력하세요")
         input_path = st.text_input(
             "이미지 시퀀스 디렉토리 경로",
-            placeholder="예: C:/data/timelapse/frames/"
+            placeholder="예: /data/timelapse/frames/"
         )
     
     st.markdown("### 2️⃣ 분석 설정")
@@ -231,7 +231,7 @@ def show_drug_comparison_tab():
     control_path = st.text_input(
         "대조군 경로",
         key="control_path",
-        placeholder="C:/data/control.avi"
+        placeholder="예: /data/control.avi"
     )
     
     # 처리군
@@ -256,7 +256,7 @@ def show_drug_comparison_tab():
             drug_path = st.text_input(
                 f"약물 {i+1} 경로",
                 key=f"drug_path_{i}",
-                placeholder=f"C:/data/{drug_name.lower()}.avi"
+                placeholder=f"/data/{drug_name.lower()}.avi"
             )
         
         if drug_name and drug_path:
