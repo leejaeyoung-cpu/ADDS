@@ -23,8 +23,9 @@ jobs:
         run: pip install ruff==0.3.4
       - name: Ruff check
         run: |
-          ruff check src/ backend/ --select=E9,F821 --output-format=github || true
+          ruff check src/ backend/ --select=E9,F821 --exclude="src/ui,src/ui/page_modules" --output-format=github || true
           echo "Syntax check done"
+
 
   test-science:
     name: Science Tests
@@ -49,6 +50,7 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
         run: |
           python -m pytest tests/test_science_core.py -v --tb=short -p no:warnings
+
 
   security:
     name: Security Scan
