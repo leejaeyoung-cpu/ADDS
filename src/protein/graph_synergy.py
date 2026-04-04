@@ -12,6 +12,14 @@ Reference:
 - DeepSynergy: https://academic.oup.com/bioinformatics/article/34/9/1538/4747884
 """
 
+import os as _os
+from pathlib import Path as _Path
+# ADDS_BASE_DIR environment variable overrides automatic detection
+BASE_DIR = _Path(_os.environ.get('ADDS_BASE_DIR', str(_Path(__file__).resolve().parents[2])))
+
+
+
+
 import logging
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
@@ -504,10 +512,6 @@ class GraphSynergyPredictor:
     ) -> List[SynergyPrediction]:
         """배치 예측"""
 
-import os as _os
-from pathlib import Path as _Path
-# ADDS_BASE_DIR environment variable overrides automatic detection
-BASE_DIR = _Path(_os.environ.get("ADDS_BASE_DIR", str(_Path(__file__).resolve().parent.parent)))
 
         return [self.predict_synergy(a, b) for a, b in drug_pairs]
 
