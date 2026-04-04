@@ -24,6 +24,14 @@ Architecture:
     │   (Responder/Non-responder classification)      │
     └─────────────────────────────────────────────────┘
 """
+
+import os as _os
+from pathlib import Path as _Path
+# ADDS_BASE_DIR environment variable overrides automatic detection
+BASE_DIR = _Path(_os.environ.get('ADDS_BASE_DIR', str(_Path(__file__).resolve().parents[2])))
+
+
+
 import numpy as np
 import pandas as pd
 import pickle
@@ -657,10 +665,6 @@ class TreatmentResponsePipeline:
 def run_demo():
     """Multi-modal pipeline 데모."""
 
-import os as _os
-from pathlib import Path as _Path
-# ADDS_BASE_DIR environment variable overrides automatic detection
-BASE_DIR = _Path(_os.environ.get("ADDS_BASE_DIR", str(_Path(__file__).resolve().parent.parent)))
 
     print("=" * 70)
     print("Multi-Modal Treatment Response Pipeline — DEMO")
