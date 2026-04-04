@@ -7,6 +7,12 @@ Label: responded (1=no relapse at 3yr, 0=relapsed)
 CV: AUC 0.64 ± 0.08
 """
 
+import os as _os
+from pathlib import Path as _Path
+# ADDS_BASE_DIR environment variable overrides automatic detection
+BASE_DIR = _Path(_os.environ.get('ADDS_BASE_DIR', str(_Path(__file__).resolve().parents[2])))
+
+
 import json
 import logging
 from pathlib import Path
@@ -166,10 +172,6 @@ class TreatmentResponsePredictor:
     def get_model_info(self) -> Dict[str, Any]:
         """Return model metadata."""
 
-import os as _os
-from pathlib import Path as _Path
-# ADDS_BASE_DIR environment variable overrides automatic detection
-BASE_DIR = _Path(_os.environ.get("ADDS_BASE_DIR", str(_Path(__file__).resolve().parent.parent)))
 
         return {
             "available": self.is_available,
