@@ -18,7 +18,10 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
 
-from utils import get_logger, config
+try:
+    from utils import get_logger, config
+except ImportError:
+    from src.utils import get_logger, config
 
 logger = get_logger(__name__)
 
