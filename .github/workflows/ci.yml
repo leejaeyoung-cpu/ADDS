@@ -21,11 +21,10 @@ jobs:
           cache: pip
       - name: Install ruff
         run: pip install ruff==0.3.4
-      - name: Ruff check
+      - name: Ruff syntax-only check (E9)
         run: |
-          ruff check src/ backend/ --select=E9,F821 --exclude="src/ui,src/ui/page_modules" --output-format=github || true
-          echo "Syntax check done"
-
+          ruff check src/ backend/ --select=E9 --output-format=github
+          echo "Syntax check passed"
 
   test-science:
     name: Science Tests
@@ -45,12 +44,25 @@ jobs:
         run: |
           mkdir -p data/samples logs
           printf 'OPENAI_API_KEY=test\nDB_PATH=:memory:\n' > .env
-      - name: Run tests
+      - name: Run core science tests
         env:
           PYTHONPATH: ${{ github.workspace }}
         run: |
           python -m pytest tests/test_science_core.py -v --tb=short -p no:warnings
-
+      - name: Run unit module tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python -m pytest tests/test_unit_modules.py -v --tb=short -p no:warnings
+      - name: Coverage report
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python -m pytest tests/test_science_core.py tests/test_unit_modules.py \
+            --cov=src/utils --cov=src/evaluation --cov=src/data \
+            --cov-report=term-missing \
+            -p no:warnings -q
+          echo "Coverage report generated"
 
   security:
     name: Security Scan
