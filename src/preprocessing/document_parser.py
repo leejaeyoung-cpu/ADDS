@@ -11,7 +11,10 @@ import pdfplumber
 import pandas as pd
 from datetime import datetime
 
-from utils import get_logger
+try:
+    from utils import get_logger
+except ImportError:
+    from src.utils import get_logger
 
 logger = get_logger(__name__)
 
