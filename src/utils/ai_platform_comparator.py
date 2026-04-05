@@ -11,7 +11,10 @@ from typing import Dict, Any, Optional, List
 from openai import OpenAI
 from dotenv import load_dotenv
 
-from utils import get_logger
+try:
+    from utils import get_logger
+except ImportError:
+    from src.utils import get_logger
 
 load_dotenv()
 logger = get_logger(__name__)
