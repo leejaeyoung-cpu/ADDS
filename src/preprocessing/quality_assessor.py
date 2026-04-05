@@ -8,7 +8,10 @@ import cv2
 from typing import Dict, Tuple
 from pathlib import Path
 
-from utils import get_logger
+try:
+    from utils import get_logger
+except ImportError:
+    from src.utils import get_logger
 
 logger = get_logger(__name__)
 
